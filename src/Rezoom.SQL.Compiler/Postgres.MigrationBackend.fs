@@ -5,8 +5,9 @@ open System.Configuration
 open System.Data.Common
 open System.Text.RegularExpressions
 open Rezoom.SQL.Compiler.BackendUtilities
+open Rezoom.SQL.Mapping
 
-type PostgresMigrationBackend(settings : ConnectionStringSettings) =
+type PostgresMigrationBackend(settings : ConnectionStringConfig) =
     inherit DefaultMigrationBackend(settings)
     static let tryGetCode (data : IDictionary) =
         if data.Contains("Code") then

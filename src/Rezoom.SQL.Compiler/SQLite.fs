@@ -54,7 +54,7 @@ type private SQLiteStatement(indexer : IParameterIndexer) as this =
             Error.backendDoesNotSupportFeature
                 "SQLite" "ALTER TABLE statements other than RENAME TO/ADD COLUMN"
 
-type SQLiteMigrationBackend(settings : ConnectionStringSettings) =
+type SQLiteMigrationBackend(settings : ConnectionStringConfig) =
     inherit DefaultMigrationBackend(settings)
     override this.Initialize() =
         let builder = DbConnectionStringBuilder(ConnectionString = settings.ConnectionString)

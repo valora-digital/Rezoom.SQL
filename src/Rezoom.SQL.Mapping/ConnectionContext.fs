@@ -10,12 +10,14 @@ type ConnectionContext(provider : ConnectionProvider) =
     new() = new ConnectionContext(DefaultConnectionProvider())
     /// Get the open `DbConnection` by name. If it is not already open, open it according to
     /// the connection provider (usually via the connection string from App.confg).
+    /// 
     member __.GetConnection(name : string) =
         let succ, found = connections.TryGetValue(name)
         if succ then found else
         let conn = provider.Open(name)
         connections.[name] <- conn
         conn
+        
     /// Close all the open connections.
     member __.Dispose() =
         if connections.Count = 0 then ()

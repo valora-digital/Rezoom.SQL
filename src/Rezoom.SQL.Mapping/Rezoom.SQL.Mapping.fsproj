@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="ConnectionStringConfig.fs" />
     <Compile Include="CILHelpers.fs" />
     <Compile Include="Row.fs" />
     <Compile Include="ColumnMap.fs" />
@@ -42,7 +43,6 @@
   <ItemGroup>
     <PackageReference Include="LicenseToCIL" Version="1.0.0" />
     <PackageReference Include="Rezoom" Version="1.0.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
   </ItemGroup>
 

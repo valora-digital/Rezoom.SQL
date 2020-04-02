@@ -6,8 +6,9 @@ open System.Data.Common
 open System.Text.RegularExpressions
 open Rezoom.SQL.Compiler
 open Rezoom.SQL.Compiler.BackendUtilities
+open Rezoom.SQL.Mapping
 
-type TSQLMigrationBackend(settings : ConnectionStringSettings) =
+type TSQLMigrationBackend(settings : ConnectionStringConfig) =
     inherit DefaultMigrationBackend(settings)
     let attemptCreateDatabase (conn : DbConnection) =
         let oldConnectionString = conn.ConnectionString

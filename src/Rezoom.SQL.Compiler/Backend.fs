@@ -34,7 +34,7 @@ type ParameterTransform =
 
 type IBackend =
     abstract member InitialModel : Model
-    abstract member MigrationBackend : Quotations.Expr<ConnectionStringSettings -> IMigrationBackend>
+    abstract member MigrationBackend : Quotations.Expr<ConnectionStringConfig -> IMigrationBackend>
     abstract member ParameterTransform
         : columnType : ColumnType -> ParameterTransform
     abstract member ToCommandFragments

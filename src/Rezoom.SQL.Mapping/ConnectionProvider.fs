@@ -1,4 +1,5 @@
 ﻿namespace Rezoom.SQL.Mapping
+
 open System
 open System.Configuration
 open System.Data.Common
@@ -42,15 +43,15 @@ open NetStandardHacks
 
 type DefaultConnectionProvider() =
     inherit ConnectionProvider()
+    
+    static let mutable configurationReader : string -> ConnectionStringConfig = (fun _ -> failwith "no implementation was provided")
+    
+    static member SetConfigurationReader (reader: string -> ConnectionStringConfig) =
+        configurationReader <- reader
+    
     static member ResolveConnectionString(name : string) =
-        let connectionStrings = ConfigurationManager.ConnectionStrings
-        if isNull connectionStrings then
-            failwith "No <connectionStrings> element in config"
-        let connectionString = connectionStrings.[name]
-        if isNull connectionString then
-            failwith "No connection string by the expected name"
-        else
-            connectionString
+        configurationReader name
+        
     static member Open(name) =
         let connectionString = DefaultConnectionProvider.ResolveConnectionString(name)
         let provider : DbProviderFactory = DbProviderFactories.GetFactory(connectionString.ProviderName)
@@ -63,6 +64,7 @@ type DefaultConnectionProvider() =
             cmd.CommandText <- "PRAGMA foreign_keys=ON;"
             cmd.ExecuteNonQuery() |> ignore
         conn
+        
     override __.Open(name) = DefaultConnectionProvider.Open(name)
 
 
