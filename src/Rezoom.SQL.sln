@@ -13,9 +13,9 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rezoom.SQL.Test", "Rezoom.S
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rezoom.SQL.Provider", "Rezoom.SQL.Provider\Rezoom.SQL.Provider.fsproj", "{1D333C86-98EB-4801-AB10-278302875008}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Examples.SimpleSqlite", "..\..\Rezoom.SQL (old and busted)\src\Examples.SimpleSqlite\Examples.SimpleSqlite.fsproj", "{A30748E7-CD05-4993-856B-AA6BF19FC836}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{C1811413-FA77-4C5F-9FBE-450EDBB01253}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Examples.SimpleSqlite", "Examples.SimpleSqlite\Examples.SimpleSqlite.fsproj", "{BCFCC5AE-B231-4193-9132-ADCCD8D22F47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,17 +39,17 @@ Global
 		{1D333C86-98EB-4801-AB10-278302875008}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D333C86-98EB-4801-AB10-278302875008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D333C86-98EB-4801-AB10-278302875008}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A30748E7-CD05-4993-856B-AA6BF19FC836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A30748E7-CD05-4993-856B-AA6BF19FC836}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A30748E7-CD05-4993-856B-AA6BF19FC836}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A30748E7-CD05-4993-856B-AA6BF19FC836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFCC5AE-B231-4193-9132-ADCCD8D22F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFCC5AE-B231-4193-9132-ADCCD8D22F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFCC5AE-B231-4193-9132-ADCCD8D22F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFCC5AE-B231-4193-9132-ADCCD8D22F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B6C3585C-55C0-4276-871D-9733E11E3513} = {3CFAC282-AFAA-4B7A-879F-D2BDF9EC631B}
-		{A30748E7-CD05-4993-856B-AA6BF19FC836} = {C1811413-FA77-4C5F-9FBE-450EDBB01253}
+		{BCFCC5AE-B231-4193-9132-ADCCD8D22F47} = {C1811413-FA77-4C5F-9FBE-450EDBB01253}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3984727B-D7F5-4A1D-B438-1A4A1EB6A711}
