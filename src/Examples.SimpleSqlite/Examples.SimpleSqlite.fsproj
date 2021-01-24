@@ -16,7 +16,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Rezoom.SQL\src\Rezoom.SQL.Provider\Rezoom.SQL.Provider.fsproj" />
+      <ProjectReference Include="..\Rezoom.SQL.Provider\Rezoom.SQL.Provider.fsproj" />
     </ItemGroup>
 
 </Project>
