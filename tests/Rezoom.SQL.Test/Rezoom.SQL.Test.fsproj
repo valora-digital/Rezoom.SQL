@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,8 +44,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rezoom.SQL.Compiler\Rezoom.SQL.Compiler.fsproj" />
-    <ProjectReference Include="..\Rezoom.SQL.Mapping\Rezoom.SQL.Mapping.fsproj" />
+    <ProjectReference Include="..\..\src\Rezoom.SQL.Compiler\Rezoom.SQL.Compiler.fsproj" />
+    <ProjectReference Include="..\..\src\Rezoom.SQL.Mapping\Rezoom.SQL.Mapping.fsproj" />
   </ItemGroup>
 
 </Project>
