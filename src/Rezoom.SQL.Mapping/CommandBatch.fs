@@ -19,7 +19,7 @@ type private CommandBatchRuntimeBackend =
     | Other
     static member OfNamespace(ns : string) =
         match ns with
-        | "System.Data.SqlClient" -> SQLServer
+        | "Microsoft.Data.SqlClient" -> SQLServer
         | "System.Data.OracleClient"
         | "Oracle.DataAccess.Client" -> Oracle
         | "Npgsql" -> Postgres
@@ -34,7 +34,7 @@ type private CommandBatchRuntimeBackend =
         | Oracle -> 1900 // actual is 2000 but leave plenty of breathing room since it's untested
         | Postgres
         | MySQL -> 10_000
-        | SQLite 
+        | SQLite
         | Other -> 999
     static member private PgType(ty : DbType) =
         match ty with
@@ -203,7 +203,7 @@ type private CommandBatchBuilder(conn : DbConnection, tran : DbTransaction) =
                         if not hasNextResult then
                             resultSetCount <- -1
                 | Some count ->
-                    if resultSetCount = count then 
+                    if resultSetCount = count then
                         resultSetCount <- -1
                     elif not hasNextResult then
                         failwithf
@@ -245,7 +245,7 @@ type private CommandBatchBuilder(conn : DbConnection, tran : DbTransaction) =
                             if not hasNextResult then
                                 resultSetCount <- -1
                     | Some count ->
-                        if resultSetCount = count then 
+                        if resultSetCount = count then
                             resultSetCount <- -1
                         elif not hasNextResult then
                             failwithf

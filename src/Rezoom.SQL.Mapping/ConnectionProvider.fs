@@ -29,13 +29,13 @@ module NetStandardHacks =
     type DbProviderFactories() =
         static member GetFactory(providerName : string) : DbProviderFactory =
             match providerName.ToLowerInvariant() with
-            | "system.data.sqlclient" ->
-                loadInstance "System.Data" "System.Data.SqlClient.SqlClientFactory"
+            | "Microsoft.Data.SqlClient" ->
+                loadInstance "System.Data" "Microsoft.Data.SqlClient.SqlClientFactory"
             | "system.data.sqlite" ->
                 loadInstance "System.Data.SQLite" "System.Data.SQLite.SQLiteFactory"
             | "npgsql" ->
                 loadInstance "Npgsql" "Npgsql.NpgsqlFactory"
-            | "microsoft.data.qqlite" ->
+            | "microsoft.data.sqlite" ->
                 loadInstance "Microsoft.Data.Sqlite" "Microsoft.Data.Sqlite.SqliteFactory"
             | other ->
                 failwithf "Tragically unsupported provider name ``%s``" providerName
@@ -43,15 +43,15 @@ open NetStandardHacks
 
 type DefaultConnectionProvider() =
     inherit ConnectionProvider()
-    
+
     static let mutable configurationReader : string -> ConnectionStringConfig = (fun _ -> failwith "no implementation was provided")
-    
+
     static member SetConfigurationReader (reader: string -> ConnectionStringConfig) =
         configurationReader <- reader
-    
+
     static member ResolveConnectionString(name : string) =
         configurationReader name
-        
+
     static member Open(name) =
         let connectionString = DefaultConnectionProvider.ResolveConnectionString(name)
         let provider : DbProviderFactory = DbProviderFactories.GetFactory(connectionString.ProviderName)
@@ -64,7 +64,7 @@ type DefaultConnectionProvider() =
             cmd.CommandText <- "PRAGMA foreign_keys=ON;"
             cmd.ExecuteNonQuery() |> ignore
         conn
-        
+
     override __.Open(name) = DefaultConnectionProvider.Open(name)
 
 

@@ -253,3 +253,9 @@ paket-files/
 
 # Compiled python bytecode
 *.pyc
+
+.ionide
+
+.DS_Store
+.DS_Store?
+**/.DS_Store

@@ -10,11 +10,12 @@
         <Content Include="rzsql.json" />
         <Content Include="Migrations\V1.model.sql" />
     </ItemGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112" />
+         <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.9" /> 
+<!--        <PackageReference Include="System.Data.SQLite" Version="1.0.116" />-->
     </ItemGroup>
-    
+
     <ItemGroup>
       <ProjectReference Include="..\..\src\Rezoom.SQL.Provider\Rezoom.SQL.Provider.fsproj" />
     </ItemGroup>

@@ -198,13 +198,21 @@ module MigrationUtilities =
                         ignore <| already.Add(pair) // actually we don't need this but ok
 
 [<Extension>]
- type MigrationExtensions =
+type MigrationExtensions =
     [<Extension>]
     static member Run
-        ( migrations : string MigrationTree array
+        ( migrations : MigrationTree<string> array
         , config : MigrationConfig
         , backend : unit -> IMigrationBackend
         ) =
+        use backend = backend()
+        MigrationUtilities.runMigrations config backend migrations
+        
+module MigrationHelpers =
+    let runSomething () =
+        //use backend = backend()
+        printfn "lol"
+    let run (migrations : MigrationTree<string> array, config : MigrationConfig, backend : unit -> IMigrationBackend) =
         use backend = backend()
         MigrationUtilities.runMigrations config backend migrations
 

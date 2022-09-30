@@ -1,7 +1,7 @@
 ﻿namespace Rezoom.SQL.Compiler.TSQL
 open System
 open System.Configuration
-open System.Data.SqlClient
+open Microsoft.Data.SqlClient
 open System.Data.Common
 open System.Text.RegularExpressions
 open Rezoom.SQL.Compiler
@@ -44,7 +44,7 @@ type TSQLMigrationBackend(settings : ConnectionStringConfig) =
             conn.Open()
         with
         // Class 20 or higher means we couldn't connect at all.
-        // https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlerror.class(v=vs.110).aspx
+        // https://msdn.microsoft.com/en-us/library/Microsoft.Data.SqlClient.sqlerror.class(v=vs.110).aspx
         | :? SqlException as exn when exn.Class < 20uy ->
             // A possible source of this problem is that the initial catalog we specified does not yet exist.
             // We'll try to reconnect to the master catalog and create it. This won't work on e.g. Azure SQL,
@@ -54,7 +54,7 @@ type TSQLMigrationBackend(settings : ConnectionStringConfig) =
                 try
                     attemptCreateDatabase conn
                 with
-                | innerExn -> 
+                | innerExn ->
                     raise <| AggregateException(exn, innerExn)
             if not created then
                 reraise()

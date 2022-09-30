@@ -1,8 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput> 
   </PropertyGroup>
+
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+    </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
@@ -19,8 +26,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rezoom.SQL.Compiler\Rezoom.SQL.Compiler.fsproj" />
-    <ProjectReference Include="..\Rezoom.SQL.Mapping\Rezoom.SQL.Mapping.fsproj" />
+    <PackageReference Include="FParsec-Pipes" Version="1.1.1" />
+    <PackageReference Include="Rezoom" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.0" />
+    <PackageReference Include="LicenseToCIL" Version="1.0.0" />
+<!--    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">-->
+<!--      <PrivateAssets>all</PrivateAssets>-->
+<!--      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>-->
+<!--    </PackageReference>-->
+    <PackageReference Update="FSharp.Core" Version="6.0.5">
+      <ExcludeAssets>all</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+<!--     <ProjectReference Include="..\Rezoom.SQL.Compiler\Rezoom.SQL.Compiler.fsproj" PrivateAssets="all"> -->
+    <ProjectReference Include="..\Rezoom.SQL.Compiler\Rezoom.SQL.Compiler.fsproj">
+      <!-- <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>Rezoom.SQL.Compiler.dll</IncludeAssets> -->
+    </ProjectReference>
+<!--     <ProjectReference Include="..\Rezoom.SQL.Mapping\Rezoom.SQL.Mapping.fsproj" PrivateAssets="all"> -->
+    <ProjectReference Include="..\Rezoom.SQL.Mapping\Rezoom.SQL.Mapping.fsproj">
+      <!-- <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>Rezoom.SQL.Mapping.dll</IncludeAssets> -->
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

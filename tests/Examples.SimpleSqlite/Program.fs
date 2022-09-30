@@ -14,7 +14,7 @@ let migrate() =
         }
     // run the migrations, creating the database if it doesn't exist
     MyModel.Migrate(config)
-    
+
 
 // define a SQL command for inserting a user and getting their ID
 type InsertUser = SQL<"""
@@ -22,7 +22,7 @@ type InsertUser = SQL<"""
     select last_insert_rowid() as id
 """>
 
-// define a SQL command for inserting a comment 
+// define a SQL command for inserting a comment
 type InsertComment = SQL<"insert into Comments(AuthorId, Comment) values (@authorId, @comment)">
 
 let addExampleUser name email =
@@ -36,7 +36,7 @@ let addExampleUser name email =
     InsertComment.Command(authorId = int userId, comment = "Comment 2").Execute(context)
 
 type ListUsers = SQL<"""
-    select * from Users as user
+    select user.Id, user.Name, user.Email from Users as user
     order by user.Name
 """>
 
@@ -54,10 +54,10 @@ let showUsers() =
 let main argv =
     DefaultConnectionProvider.SetConfigurationReader (fun connectionName ->
         match connectionName.Equals "rzsql" with
-        | true -> { ConnectionString = "Data Source=rzsql.db"; ProviderName = "System.Data.SQLite" }
+        | true -> { ConnectionString = "Data Source=rzsql.db"; ProviderName = "Microsoft.Data.SQLite" }
         | false -> failwithf "unknown connection name '%s'" connectionName
     )
-    
+
     migrate()
     addExampleUser "Peter" "Parker"
     showUsers()
