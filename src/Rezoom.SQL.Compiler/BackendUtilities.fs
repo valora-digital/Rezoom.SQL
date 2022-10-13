@@ -92,7 +92,7 @@ type DbMigration(majorVersion : int, name : string) =
 
 type DefaultMigrationBackend(conn : DbConnection) =
     new(settings : ConnectionStringSettings) =
-        let provider = DbProviderFactories.GetFactory(settings.ProviderName)
+        let provider = Rezoom.SQL.Mapping.NetStandardHacks.DbProviderFactories.GetFactory(settings.ProviderName)
         let conn = provider.CreateConnection()
         conn.ConnectionString <- settings.ConnectionString
         new DefaultMigrationBackend(conn)
